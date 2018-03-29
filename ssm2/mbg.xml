@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+  	<!-- 让逆向生成的javaBean代码中无注释 -->
+  	<commentGenerator>
+		<property name="suppressAllComments" value="true" />
+	</commentGenerator>
+  	<!-- 数据源 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/mysql_jdbc_ssm"
+        userId="root"
+        password="123456">
+    </jdbcConnection>
+	
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	
+	<!-- 指定生成 javaBean 的路径 -->
+    <javaModelGenerator targetPackage="com.ssm.bean" targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+	<!-- 指定对应 sql xml存放的路径 -->
+    <sqlMapGenerator targetPackage="mapper"  targetProject=".\src\main\resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+	<!-- 指定生成dao接口的路径 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ssm.dao"  targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+	<!-- 指定数据库 数据表对应的javaBean
+		tableName  数据表名
+		domainObjectName javaBean的类名
+	 -->
+    <table tableName="tb_emp" domainObjectName="Employee" ></table>
+    <table tableName="tb_dept" domainObjectName="Deptment"></table>
+
+  </context>
+</generatorConfiguration>
